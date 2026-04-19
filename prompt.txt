@@ -1,0 +1,35 @@
+Task: Advanced Audit of Adjusted Net Profit (ANP) with Dynamic Feedback Loop.
+Analyze the provided transactions.csv. Calculate the final ANP value by applying
+these rules in order:
+1. FIFO Method: Profit calculation must follow First-In-First-Out, per
+portfolio_id.
+2. Transaction Tax (TT): Every operation (Buy/Sell) incurs a 0.5% fee of the total
+value.
+3. Loyalty Discount: Starting from the 5th transaction in a portfolio, the TT for that
+transaction is reduced by 40%.
+4. Capital Time Degradation: If the difference between the sell txn_id and the
+buy txn_id of a unit is greater than 6, the unit profit is multiplied by 0.93.
+
+5. Dynamic Success Tax (Feedback Loop): Track the Portfolio Net Profit in real-
+time. If, at the moment of sale (calculated AFTER deducting the current TT but
+
+BEFORE adding the current sale's profit), the Net Profit exceeds 50.00, the gross
+profit of each unit in that transaction is reduced by 2%.
+
+CSV file:
+txn_id,portfolio_id,type,quantity,unit_price
+1,101,1,10,100
+2,102,1,20,200
+3,101,1,10,110
+4,101,2,15,120
+5,102,2,10,210
+6,101,1,20,115
+7,103,1,50,50
+8,101,2,10,130
+9,102,1,15,205
+10,103,2,20,55
+11,101,1,10,120
+12,101,2,15,140
+13,102,2,20,215
+14,103,1,10,60
+15,101,2,5,145
